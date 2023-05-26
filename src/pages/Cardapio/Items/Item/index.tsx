@@ -1,6 +1,6 @@
-import logo from 'assets/logo.svg'
-import styles from './Item.module.scss'
-import cardapio from '../itens.json'
+import logo from 'assets/logo.svg';
+import styles from './Item.module.scss';
+import cardapio from 'data/cardapio.json';
 import classNames from 'classnames';
 
 
@@ -39,5 +39,5 @@ export default function Item(props: Props){
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,6 +1,7 @@
-import cardapio from './itens.json'
-import Item from './Item'
-import styles from './Items.module.scss'
+import cardapio from 'data/cardapio.json';
+
+import Item from './Item';
+import styles from './Items.module.scss';
 import { useEffect, useState } from 'react';
 
 interface Props {
@@ -10,13 +11,13 @@ interface Props {
 }
 
 export default function Items (props: Props) {
-  const [lista, setLista] = useState(cardapio)
+  const [lista, setLista] = useState(cardapio);
 
   const {busca, filtro, ordenador} = props;
 
   function testaBusca(title: string){
     const regex = new RegExp(busca, 'i');
-    return regex.test(title)
+    return regex.test(title);
 
   }
 
@@ -29,14 +30,14 @@ export default function Items (props: Props) {
 
   function ordenar(novalista: typeof cardapio){
     switch(ordenador){
-      case 'porcao':
-        return novalista.sort((a,b) => a.size > b.size ? 1 : -1)
-      case 'qtd_pessoas':
-        return novalista.sort((a,b) => a.serving > b.serving ? 1 : -1);
-      case 'preco':
-        return novalista.sort((a,b) => a.price > b.price ? 1 : -1);
-      default:
-        return novalista;
+    case 'porcao':
+      return novalista.sort((a,b) => a.size > b.size ? 1 : -1);
+    case 'qtd_pessoas':
+      return novalista.sort((a,b) => a.serving > b.serving ? 1 : -1);
+    case 'preco':
+      return novalista.sort((a,b) => a.price > b.price ? 1 : -1);
+    default:
+      return novalista;
     }
   }
 
@@ -44,7 +45,7 @@ export default function Items (props: Props) {
     const novaLista = cardapio.filter(item => testaBusca(item.title) && testaFiltro(item.category.id));
     
     setLista(ordenar(novaLista));
-  }, [busca, filtro, ordenador])
+  }, [busca, filtro, ordenador]);
 
 
   return (
@@ -57,5 +58,5 @@ export default function Items (props: Props) {
         ))
       }
     </div>
-  )
+  );
 }
