@@ -3,6 +3,7 @@ import cardapio from 'data/cardapio.json';
 import Item from './Item';
 import styles from './Items.module.scss';
 import { useEffect, useState } from 'react';
+import { Cardapio } from 'types/Prato';
 
 interface Props {
   busca: string;
@@ -28,7 +29,7 @@ export default function Items (props: Props) {
     return true;
   }
 
-  function ordenar(novalista: typeof cardapio){
+  function ordenar(novalista: Cardapio){
     switch(ordenador){
     case 'porcao':
       return novalista.sort((a,b) => a.size > b.size ? 1 : -1);
